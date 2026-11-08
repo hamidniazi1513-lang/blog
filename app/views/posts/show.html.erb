@@ -1,0 +1,17 @@
+<h1><%= @post.title %></h1>
+<p><%= simple_format(@post.body) %></p>
+<p><%= link_to "Edit", edit_post_path(@post) %> | <%= link_to "All posts", posts_path %></p>
+<hr>
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+  <article>
+    <%= simple_format(comment.body) %>
+    <%= button_to "Delete comment", post_comment_path(@post, comment), method: :delete %>
+  </article>
+<% end %>
+<h3>Add a comment</h3>
+<%= form_with(model: [@post, @comment]) do |form| %>
+  <%= form.label :body %>
+  <%= form.text_area :body, required: true %>
+  <%= form.submit "Add comment" %>
+<% end %>

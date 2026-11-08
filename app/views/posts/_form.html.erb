@@ -1,0 +1,6 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %><div class="error"><%= post.errors.full_messages.to_sentence %></div><% end %>
+  <div><%= form.label :title %><%= form.text_field :title, required: true %></div>
+  <div><%= form.label :body %><%= form.text_area :body, required: true %></div>
+  <%= form.submit %>
+<% end %>
