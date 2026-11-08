@@ -1,26 +1,44 @@
-# Blog application
+# Blog (Ruby on Rails)
 
-A simple Ruby on Rails blog application with Posts and nested Comments.
+A simple blog application with posts and nested comments.
 
 ## Requirements
-- Ruby 3.2 or newer
-- Bundler
-- SQLite3
+
+- Ruby 3.3.8
+- Rails 8.0.2
+- SQLite 3
 
 ## Setup
 
 ```bash
 bundle install
-bin/rails db:migrate
+bin/rails db:prepare
 bin/rails server
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3000 to use the application.
 
-## Assignment requirements
-- Posts scaffold fields: `title:string`, `body:text`
-- Comments fields: `post:references`, `body:text`
-- Resource routes: `resources :posts` and nested `resources :comments`
-- Git repository is included in this project folder.
+## Features
 
-To inspect routes, run `bin/rails routes`.
+- Create, read, update, and delete posts.
+- Each post has a string `title` and text `body`.
+- Each comment belongs to a post through `post_id` (a references/foreign-key relationship).
+- Comments have a text `body`.
+- Nested RESTful routes are defined for posts and comments.
+
+## Routes
+
+```bash
+bin/rails routes
+```
+
+Posts: `/posts`
+Comments: `/posts/:post_id/comments`
+
+## Database
+
+SQLite is configured in `config/database.yml`. Run migrations with:
+
+```bash
+bin/rails db:migrate
+```
